@@ -2,6 +2,8 @@ sudo: false
 language: node_js
 node_js: 9
 before_install:
+- openssl aes-256-cbc -K $encrypted_28cb41657b84_key -iv $encrypted_28cb41657b84_iv
+  -in id_rsa_deploy.enc -out id_rsa_deploy -d
 - chmod 600 id_rsa_deploy
 install:
 - npm install '@angular/cli' -g
