@@ -1,1 +1,24 @@
+$fa-font-path: "../node_modules/font-awesome/fonts";
 /* You can add global styles to this file, and also import other style files */
+
+$font-family-sans-serif: 'Montserrat', -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+$font-family-base:       $font-family-sans-serif;
+
+@import "../node_modules/font-awesome/scss/font-awesome.scss";
+@import '../node_modules/bootstrap/scss/bootstrap';
+@import '../node_modules/map-wald/map-wald.scss';
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+
+#main-map{
+  position:fixed;
+  left:0px;
+  top:0px; /* $navbar-height */
+  right:0px;
+  bottom:0px;
+
+  /*  height:400px;
+  position:relative;
+  top:0px;
+*/
+}
