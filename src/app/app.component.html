@@ -1,9 +1,24 @@
 <div id="main-map">
-  <agm-map>
+  <agm-map [latitude]="0" [longitude]="135" [zoom]="3">
+    <agm-marker  [longitude]="150" [latitude]="-20">
+    </agm-marker>
+
+      <wms-layer *ngIf="url"
+               #wms
+               [url]="url"
+               [params]="params"
+               [opacity]="1"
+               [position]="0">
+    </wms-layer>
 
   </agm-map>
 </div>
 
+<!--
+  [(latitude)]="lat" [(longitude)]="lng" [(zoom)]="zoom" [disableDefaultUI]="false" [mapTypeId]="baseLayer?baseLayer.map_type_id : null"
+    [zoomControl]="false" (mapClick)="mapClick($event)" (centerChange)="moved($event)" (zoomChange)="zoomed($event)"
+    [fitBounds]="bounds" scaleControl="true"
+-->
 
 <!--
 <router-outlet></router-outlet>
