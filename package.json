@@ -4,7 +4,11 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --port 9004 --aot=false",
-    "build": "ng build",
+    "remote": "ng serve --port 9004 --host 0.0.0.0 --aot false --proxy-config proxy.conf.json",
+    "build": "if [ $BRANCH = 'production' ]; then export PREFIX='/grafs/'; else export PREFIX='/grafs/staging/'; fi; npm run build-with-prefix",
+    "build-with-prefix": "echo prefix=$PREFIX && ng build --prod --no-aot --base-href $PREFIX",
+    "transpile-plotly": "mkdir -p plotly-transpiled && browserify node_modules/typedarray/index.js -o plotly-transpiled/typedarray.js && cd node_modules/plotly.js/dist && babel -d ../../../plotly-transpiled plotly.js plotly.min.js",
+    "fix-plotly": "cp plotly-transpiled/plotly.min.js dist/plotly.js && cp plotly-transpiled/typedaray.js dist && sed 's-../plotly-transpiled-.-g' < dist/index.html > tmp && mv tmp dist/index.html",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
