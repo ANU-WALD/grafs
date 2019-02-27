@@ -10,6 +10,7 @@ import { WMSLayerComponent } from 'map-wald';
 })
 export class AppComponent {
   @ViewChild('wms') wmsLayer: WMSLayerComponent;
+  showWindows = true;
 
   title = 'grafs';
   url: string// = environment.tds_server + 'wms/ub8/global/GRAFS/API_analysis_window_20190203.nc';

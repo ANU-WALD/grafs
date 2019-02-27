@@ -1,7 +1,15 @@
 <div id="main-map">
   <agm-map [latitude]="0" [longitude]="135" [zoom]="3">
-    <agm-marker  [longitude]="150" [latitude]="-20">
-    </agm-marker>
+      <map-control position="LEFT_BOTTOM">
+        <div *ngIf="showWindows" class="card map-control">
+          <div class="card-block control-card-content">
+            <map-legend [title]="'GRAFS Global Soil Moisture'" [mapUnits]="'mm'"
+              [cbPalette]="'RdYlBu'" [cbCount]="9" [cbReverse]="false"
+              [cbRange]="[0,250]"
+              [helpText]="'TODO'"></map-legend>
+          </div>
+        </div>
+      </map-control>
 
       <wms-layer *ngIf="url"
                #wms
