@@ -1,15 +1,47 @@
 <div id="main-map">
-  <agm-map [latitude]="0" [longitude]="135" [zoom]="3">
-      <map-control position="LEFT_BOTTOM">
-        <div *ngIf="showWindows" class="card map-control">
-          <div class="card-block control-card-content">
-            <map-legend [title]="'GRAFS Global Soil Moisture'" [mapUnits]="'mm'"
-              [cbPalette]="'RdYlBu'" [cbCount]="9" [cbReverse]="false"
-              [cbRange]="[0,250]"
-              [helpText]="'TODO'"></map-legend>
-          </div>
+  <layered-map [lat]="0" [lng]="135" [zoom]="3"
+               [layers]="layers"
+               [showMapType]="false"
+               [streetViewControl]="showWindows"
+               [bounds]="fullExtent">
+
+    <div class="map-control left-top">
+      <button-bar>
+        <div>
+          <button class="btn btn-secondary btn-sm"
+                  (click)="showWindows = !showWindows"
+                  [ngbTooltip]="showWindows?'Hide windows':'Show windows'"
+                  placement="right">
+            <i class="fa" [ngClass]="showWindows?'fa-eye-slash':'fa-eye'"></i>
+          </button>
         </div>
-      </map-control>
+        <zoom-in *ngIf="showWindows" [map]="map" [maxZoom]="20"></zoom-in>
+        <zoom-out *ngIf="showWindows"  [map]="map" [minZoom]="3"></zoom-out>
+        <zoom-full *ngIf="showWindows" [map]="map" [bounds]="fullExtent"></zoom-full>
+        <zoom-layer *ngIf="showWindows" [map]="map" [layer]="topLayer" [fullBounds]="fullExtent"></zoom-layer>
+        <cycle-opacity *ngIf="showWindows" [map]="map"></cycle-opacity>
+        <cycle-base-map *ngIf="showWindows" [map]="map"></cycle-base-map>
+      </button-bar>
+    </div>
+
+    <div class="map-control left-bottom">
+      <div class="card">
+        <date-shifter [(date)]="date" (dateChange)="updateDate()"></date-shifter>
+      </div>
+    </div>
+
+    <div class="map-control right-bottom">
+      <div *ngIf="showWindows" class="card map-control">
+        <div class="card-block control-card-content">
+          <map-legend [title]="'GRAFS Global Soil Moisture'" [mapUnits]="'mm'"
+            [cbPalette]="'RdYlBu'" [cbCount]="9" [cbReverse]="false"
+            [cbRange]="[0,250]"
+            [helpText]="'TODO'"></map-legend>
+        </div>
+      </div>
+    </div>
+
+<!--
 
       <wms-layer *ngIf="url"
                #wms
@@ -18,8 +50,9 @@
                [opacity]="1"
                [position]="0">
     </wms-layer>
+-->
 
-  </agm-map>
+  </layered-map>
 </div>
 
 <!--
