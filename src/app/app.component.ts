@@ -9,7 +9,7 @@ import { AvailableDatesService, MappedLayer, LayeredMapComponent, Bounds, Layer,
   // providers: [GoogleMapsAPIWrapper]
 })
 export class AppComponent {
-  @ViewChild(LayeredMapComponent) map: LayeredMapComponent;
+  @ViewChild(LayeredMapComponent, { static: true }) map: LayeredMapComponent;
   showWindows = true;
 
   layers: Array<MappedLayer> = [];

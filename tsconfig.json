@@ -2,11 +2,12 @@
   "compileOnSave": false,
   "compilerOptions": {
     "allowJs":true,
+    "downlevelIteration": true,
     "outDir": "./dist/out-tsc",
     "baseUrl": "src",
     "sourceMap": true,
     "declaration": false,
-    "module": "es2015",
+    "module": "esnext",
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
